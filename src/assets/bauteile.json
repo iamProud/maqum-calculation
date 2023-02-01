@@ -1,0 +1,40 @@
+{
+    "regalbediengerät": {
+        "diameter": 550,
+        "margin": {
+            "x1": 100,
+            "x2": 100,
+            "y1": 100,
+            "y2": 100
+        }
+    },
+    "picksystem": {
+        "width": 708.5,
+        "depth": 1298,
+        "margin": {
+            "x1": 0,
+            "x2": 0,
+            "y1": 0,
+            "y2": 0
+        }
+    },
+    "kistenaufzug": {
+        "width": 589.5,
+        "depth": 1298,
+        "margin": {
+            "x1": 0,
+            "x2": 0,
+            "y1": 0,
+            "y2": 0
+        }
+    },
+    "lagerregal": {
+        "width": 1004.5,
+        "_25": {
+            "tiefe": 250
+        },
+        "_35": {
+            "tiefe": 350
+        }
+    }
+}

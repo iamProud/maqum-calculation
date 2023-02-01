@@ -1,0 +1,402 @@
+{
+    "einlagerungsmodul": {
+        "versandkistenlift": {
+            "soll_vk": 6000,
+            "einzelpreis_vk": 6300,
+            "ek_serie": 3200,
+            "ek": 4000
+        },
+        "versandkisten_5": {
+            "soll_vk": 2500,
+            "einzelpreis_vk": 2625,
+            "ek_serie": 960,
+            "ek": 1200
+        },
+        "versandkisten_10": {
+            "soll_vk": 4500,
+            "einzelpreis_vk": 4725,
+            "ek_serie": 1600,
+            "ek": 2000
+        },
+        "versandkisten_20": {
+            "soll_vk": 8500,
+            "einzelpreis_vk": 8925,
+            "ek_serie": 3200,
+            "ek": 4000
+        },
+        "picksystem": {
+            "soll_vk": 1800,
+            "einzelpreis_vk": 1890,
+            "ek_serie": 960,
+            "ek": 1200
+        },
+        "waage": {
+            "soll_vk": 1000,
+            "einzelpreis_vk": 1050,
+            "ek_serie": 480,
+            "ek": 600
+        },
+        "bilderkennungsmodul": {
+            "soll_vk": 3500,
+            "einzelpreis_vk": 3675,
+            "ek_serie": 1680,
+            "ek": 2100
+        },
+        "standardgehäuse": {
+            "soll_vk": 1800,
+            "einzelpreis_vk": 1890,
+            "ek_serie": 1200,
+            "ek": 1500
+        },
+        "gehäuseerhöhung": {
+            "soll_vk": 450,
+            "einzelpreis_vk": 472.5,
+            "ek_serie": 216,
+            "ek": 270
+        },
+        "versandkisten_automatiktür": {
+            "soll_vk": 900,
+            "einzelpreis_vk": 945,
+            "ek_serie": 432,
+            "ek": 540
+        },
+        "zugangstür_lift_glas": {
+            "soll_vk": 1200,
+            "einzelpreis_vk": 1260,
+            "ek_serie": 800,
+            "ek": 1000
+        },
+        "standardübergabe_lager": {
+            "soll_vk": 450,
+            "einzelpreis_vk": 472.5,
+            "ek_serie": 216,
+            "ek": 270
+        }
+    },
+    "systemsteuerung": {
+        "systemkomponenten": {
+            "soll_vk": 5000,
+            "einzelpreis_vk": 5250,
+            "ek_serie": 3200,
+            "ek": 4000
+        },
+        "bedienmonitor_27zoll": {
+            "soll_vk": 700,
+            "einzelpreis_vk": 735,
+            "ek_serie": 336,
+            "ek": 420
+        },
+        "kameras_2d_3d": {
+            "soll_vk": 500,
+            "einzelpreis_vk": 525,
+            "ek_serie": 360,
+            "ek": 450
+        },
+        "klimagerät_25grad": {
+            "soll_vk": 3000,
+            "einzelpreis_vk": 3150,
+            "ek_serie": 1440,
+            "ek": 1800
+        },
+        "klimagerät_6grad": {
+            "soll_vk": 3000,
+            "einzelpreis_vk": 3150,
+            "ek_serie": 1440,
+            "ek": 1800
+        },
+        "usv_2kW": {
+            "soll_vk": 2000,
+            "einzelpreis_vk": 2100,
+            "ek_serie": 960,
+            "ek": 1200
+        },
+        "softwarelizenz": {
+            "soll_vk": 3500,
+            "einzelpreis_vk": 3675,
+            "ek_serie": 1680,
+            "ek": 2100
+        }
+    },
+    "lagermodul": {
+        "lagerwand_35_fest": {
+            "name": "Lagerwand 35cm fest",
+            "soll_vk": 1200,
+            "einzelpreis_vk": 1260,
+            "ek_serie": 640,
+            "ek": 800
+        },
+        "lagerwand_35_fest_höhenerweiterung": {
+            "name": "Lagerwand 35cm fest Höhenerweiterung",
+            "soll_vk": 250,
+            "einzelpreis_vk": 262.5,
+            "ek_serie": 120,
+            "ek": 150
+        },
+        "lagerwand_25_fest": {
+            "name": "Lagerwand 25cm fest",
+            "soll_vk": 1100,
+            "einzelpreis_vk": 1155,
+            "ek_serie": 600,
+            "ek": 0
+        },
+        "lagerwand_25_fest_höhenerweiterung": {
+            "name": "Lagerwand 25cm fest Höhenerweiterung",
+            "soll_vk": 230,
+            "einzelpreis_vk": 241.5,
+            "ek_serie": 110,
+            "ek": 0
+        },
+        "lagerwand_35_beweglich": {
+            "name": "Lagerwand 35cm beweglich",
+            "soll_vk": 2100,
+            "einzelpreis_vk": 2205,
+            "ek_serie": 800,
+            "ek": 1000
+        },
+        "lagerwand_35_beweglich_höhenerweiterung": {
+            "name": "Lagerwand 35cm beweglich Höhenerweiterung",
+            "soll_vk": 250,
+            "einzelpreis_vk": 262.5,
+            "ek_serie": 120,
+            "ek": 150
+        },
+        "lagerwand_25_beweglich": {
+            "name": "Lagerwand 25cm beweglich",
+            "soll_vk": 2000,
+            "einzelpreis_vk": 2100,
+            "ek_serie": 750,
+            "ek": 0
+        },
+        "lagerwand_25_beweglich_höhenerweiterung": {
+            "name": "Lagerwand 25cm beweglich Höhenerweiterung",
+            "soll_vk": 230,
+            "einzelpreis_vk": 241.5,
+            "ek_serie": 110,
+            "ek": 0
+        },
+        "lagerwandführung": {
+            "name": "Lagerwandführung",
+            "soll_vk": 700,
+            "einzelpreis_vk": 735,
+            "ek_serie": 480,
+            "ek": 600
+        },
+        "artikeleinsatz_35": {
+            "name": "Artikeleinsatz 35cm",
+            "soll_vk": 35,
+            "einzelpreis_vk": 36.75,
+            "ek_serie": 12,
+            "ek": 15
+        },
+        "artikeleinsatz_25": {
+            "name": "Artikeleinsatz 25cm",
+            "soll_vk": 30,
+            "einzelpreis_vk": 31.5,
+            "ek_serie": 9,
+            "ek": 0
+        },
+        "regalbediengerät": {
+            "name": "Regalbediengerät",
+            "soll_vk": 14000,
+            "einzelpreis_vk": 14700,
+            "ek_serie": 7200,
+            "ek": 9000
+        },
+        "regalbediengerät_höhenerweiterung": {
+            "name": "Regalbediengerät Höhenerweiterung",
+            "soll_vk": 2500,
+            "einzelpreis_vk": 2625,
+            "ek_serie": 1200,
+            "ek": 1500
+        },
+        "regalbediengerät_führung_gerade": {
+            "name": "Regalbediengerät Führung gerade",
+            "soll_vk": 1300,
+            "einzelpreis_vk": 1365,
+            "ek_serie": 640,
+            "ek": 800
+        },
+        "regalbediengerät_führung_kurve": {
+            "name": "Regalbediengerät Führung kurve",
+            "soll_vk": 1800,
+            "einzelpreis_vk": 1890,
+            "ek_serie": 1200,
+            "ek": 1500
+        },
+        "standardisoliergehäuse": {
+            "name": "Standardisoliergehäuse",
+            "soll_vk": 1250,
+            "einzelpreis_vk": 1312.5,
+            "ek_serie": 720,
+            "ek": 900
+        },
+        "standardisoliergehäuse_abschluss": {
+            "name": "Standardisoliergehäuse Abschluss",
+            "soll_vk": 1200,
+            "einzelpreis_vk": 1260,
+            "ek_serie": 760,
+            "ek": 950
+        },
+        "kühlregalwand": {
+            "name": "Kühlregalwand",
+            "soll_vk": 2500,
+            "einzelpreis_vk": 2625,
+            "ek_serie": 1500,
+            "ek": 0
+        },
+        "kühlregalwand_abschluss": {
+            "name": "Kühlregalwand Abschluss",
+            "soll_vk": 1500,
+            "einzelpreis_vk": 1575,
+            "ek_serie": 600,
+            "ek": 0
+        },
+        "zugangstür_glas": {
+            "name": "Zugangstür Glas",
+            "soll_vk": 1100,
+            "einzelpreis_vk": 1155,
+            "ek_serie": 800,
+            "ek": 1000
+        },
+        "teilverglasung": {
+            "name": "Teilverglasung",
+            "soll_vk": 850,
+            "einzelpreis_vk": 892.5,
+            "ek_serie": 408,
+            "ek": 510
+        },
+        "standardausgabefach": {
+            "name": "Standardausgabefach",
+            "soll_vk": 350,
+            "einzelpreis_vk": 367.5,
+            "ek_serie": 168,
+            "ek": 210
+        }
+    },
+    "sonderausführung": {
+        "aufbau_keller": {
+            "soll_vk": 15000,
+            "einzelpreis_vk": 15750,
+            "ek_serie": 8000,
+            "ek": 0
+        },
+        "aufbau_obergeschoss": {
+            "soll_vk": 15000,
+            "einzelpreis_vk": 15750,
+            "ek_serie": 8000,
+            "ek": 0
+        },
+        "verkaufsautomat": {
+            "soll_vk": 5000,
+            "einzelpreis_vk": 5250,
+            "ek_serie": 2500,
+            "ek": 0
+        },
+        "orderstehle_15zoll": {
+            "soll_vk": 12000,
+            "einzelpreis_vk": 12600,
+            "ek_serie": 5500,
+            "ek": 0
+        },
+        "orderstehle_40zoll": {
+            "soll_vk": 15000,
+            "einzelpreis_vk": 15750,
+            "ek_serie": 7500,
+            "ek": 0
+        },
+        "orderstehle_40zoll_am_gehäuse": {
+            "soll_vk": 12000,
+            "einzelpreis_vk": 12600,
+            "ek_serie": 6000,
+            "ek": 0
+        },
+        "orderstehle_mit_warenausgabe": {
+            "soll_vk": 25000,
+            "einzelpreis_vk": 26250,
+            "ek_serie": 15000,
+            "ek": 0
+        },
+        "notapothekenschild": {
+            "soll_vk": 2500,
+            "einzelpreis_vk": 2625,
+            "ek_serie": 1500,
+            "ek": 0
+        },
+        "verkaufsautomat_aussenmodul": {
+            "soll_vk": 28000,
+            "einzelpreis_vk": 29400,
+            "ek_serie": 15000,
+            "ek": 0
+        },
+        "aussenmodul_mit_apothekenzentrum": {
+            "soll_vk": 32000,
+            "einzelpreis_vk": 33600,
+            "ek_serie": 16000,
+            "ek": 0
+        },
+        "roboter": {
+            "soll_vk": 10000,
+            "einzelpreis_vk": 10500,
+            "ek_serie": 6000,
+            "ek": 0
+        },
+        "produktgewicht_bis_20kg": {
+            "soll_vk": 11392,
+            "einzelpreis_vk": 11961.6,
+            "ek_serie": 8544,
+            "ek": 0
+        },
+        "gerüst_für_parkplatz": {
+            "soll_vk": 50000,
+            "einzelpreis_vk": 52500,
+            "ek_serie": 40000,
+            "ek": 0
+        }
+    },
+    "montage": {
+        "montage_und_test": {
+            "soll_vk": 3200,
+            "einzelpreis_vk": 3360,
+            "ek_serie": 2184,
+            "ek": 2000
+        },
+        "versandfertig_machen": {
+            "soll_vk": 1200,
+            "einzelpreis_vk": 1260,
+            "ek_serie": 819,
+            "ek": 1500
+        }
+    },
+    "transport_aufbau": {
+        "elektroinstallation": {
+            "soll_vk": 450,
+            "einzelpreis_vk": 472.5,
+            "ek_serie": 390,
+            "ek": 390
+        },
+        "aufbau": {
+            "soll_vk": 3500,
+            "einzelpreis_vk": 3675,
+            "ek_serie": 2100,
+            "ek": 2205
+        },
+        "transport": {
+            "soll_vk": 1000,
+            "einzelpreis_vk": 1050,
+            "ek_serie": 1000,
+            "ek": 1000
+        },
+        "aufbau_entsorgung": {
+            "soll_vk": 850,
+            "einzelpreis_vk": 892.5,
+            "ek_serie": 800,
+            "ek": 800
+        },
+        "zusätzliche_elektroarbeiten": {
+            "soll_vk": 65,
+            "einzelpreis_vk": 68.25,
+            "ek_serie": 65,
+            "ek": 65
+        }
+    }
+}
