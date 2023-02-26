@@ -1,6 +1,9 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import VueApexCharts from "vue3-apexcharts";
 
+// Global Components
+import Tile from "./components/tile.vue";
+
 import { createApp } from "vue";
 import App from "./App.vue";
 
@@ -10,6 +13,6 @@ const app = createApp(App);
 
 app.use(VueApexCharts);
 
-app.mount("#app");
+app.component("Tile", Tile);
 
-// import "bootstrap/dist/js/bootstrap.js"
+app.mount("#app");
