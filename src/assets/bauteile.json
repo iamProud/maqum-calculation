@@ -2,10 +2,10 @@
     "regalbediengerät": {
         "diameter": 550,
         "margin": {
-            "x1": 100,
-            "x2": 100,
-            "y1": 100,
-            "y2": 100
+            "x1": 104.25,
+            "x2": 104.25,
+            "y1": 104.25,
+            "y2": 104.25
         }
     },
     "picksystem": {
@@ -21,6 +21,7 @@
     "kistenaufzug": {
         "width": 589.5,
         "depth": 1298,
+        "extended": 1200,
         "margin": {
             "x1": 0,
             "x2": 0,
