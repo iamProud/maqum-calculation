@@ -12,7 +12,10 @@
                     id="einlagerungsmodul-side"
                     v-model="einlagerungsmodul.side"
                     @change="
-                        $emit('einlagerungsmodul-side-change', einlagerungsmodul.side)
+                        $emit(
+                            'einlagerungsmodul-side-change',
+                            einlagerungsmodul.side
+                        )
                     "
                     class="col-auto"
                 >
@@ -58,7 +61,10 @@
                         value="n10"
                         v-model="einlagerungsmodul.type"
                         @change="
-                            $emit('einlagerungsmodul-typ-change', einlagerungsmodul.type)
+                            $emit(
+                                'einlagerungsmodul-typ-change',
+                                einlagerungsmodul.type
+                            )
                         "
                     />
                     <label for="num-delivery-box-10">10</label>
@@ -72,7 +78,10 @@
                         value="n20"
                         v-model="einlagerungsmodul.type"
                         @change="
-                            $emit('einlagerungsmodul-typ-change', einlagerungsmodul.type)
+                            $emit(
+                                'einlagerungsmodul-typ-change',
+                                einlagerungsmodul.type
+                            )
                         "
                     />
                     <label for="num-delivery-box-20">20</label>
@@ -100,13 +109,7 @@
 </template>
 
 <script>
-import Tile from "./tile.vue";
-
 export default {
-    components: {
-        Tile: Tile,
-    },
-
     props: {
         einlagerungsmodul: {
             type: Object,

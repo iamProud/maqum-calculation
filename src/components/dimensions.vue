@@ -23,7 +23,11 @@
 
             <span>
                 <label class="me-1">Höhe</label>
-                <input type="number" min="2000" v-model="dimensionInput.height" />
+                <input
+                    type="number"
+                    min="2000"
+                    v-model="dimensionInput.height"
+                />
             </span>
 
             <span>
@@ -40,13 +44,7 @@
 </template>
 
 <script>
-import Tile from "./tile.vue";
-
 export default {
-    components: {
-        Tile: Tile,
-    },
-
     props: {
         dimensionInput: {
             type: Object,
