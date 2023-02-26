@@ -32,14 +32,15 @@
 </template>
 
 <script>
-import Tile from "./tile.vue";
-
 export default {
-    components: {
-        Tile: Tile,
-    },
-
-    props: ["dimension", "bauteile", "einlagerungsmodul", "einlagerungsmodulSize"],
+    props: [
+        "dimension",
+        "bauteile",
+        "einlagerungsmodul",
+        "einlagerungsmodulSize",
+        "shelfSide1",
+        "shelfSide2",
+    ],
 
     data() {
         return {
@@ -131,15 +132,22 @@ export default {
                             ranges: [
                                 {
                                     from: 0,
-                                    to: 5,
+                                    to: 0,
+                                    color: "#FF0000",
+                                    name: "nicht möglich",
+                                },
+                                {
+                                    from: 1,
+                                    to: 1,
                                     color: "#00FF00",
                                     name: "möglich",
                                 },
+
                                 {
-                                    from: -10,
-                                    to: -1,
-                                    color: "#FF0000",
-                                    name: "nicht möglich",
+                                    from: 2,
+                                    to: 2,
+                                    color: "#FFFF00",
+                                    name: "ausgewählt",
                                 },
                             ],
                         },
@@ -153,6 +161,12 @@ export default {
         dimension: {
             handler() {
                 this.reEvaluate();
+
+                // side 1
+                this.colorSelection(this.side1);
+
+                // side 2
+                this.colorSelection(this.side2);
             },
 
             deep: true,
@@ -161,13 +175,15 @@ export default {
         einlagerungsmodul: {
             handler() {
                 this.reEvaluate();
+
+                // side 1
+                this.colorSelection(this.side1);
+
+                // side 2
+                this.colorSelection(this.side2);
             },
 
             deep: true,
-        },
-
-        einlagerungsmodulSize() {
-            this.reEvaluate();
         },
     },
 
@@ -204,10 +220,13 @@ export default {
                 (version) => version.name == selectedType
             );
 
+            if (selectedVersion == undefined) {
+                return false;
+            }
+
             let isIncluded = selectedVersion.data.some(
                 (val) => val.x == side.selectedVersion.rows && val.y == 1
             );
-
             return isIncluded;
         },
 
@@ -215,23 +234,24 @@ export default {
             var tmpRestWidth = 0;
             var tmpRestLength = 0;
 
-            // TODO: Fix restWidth calculation
             if (this.einlagerungsmodul.side == "short") {
                 tmpRestWidth =
-                    this.dimension.width -
-                    Math.max(
-                        this.bauteile.regalbediengerät.diameter,
-                        this.einlagerungsmodulSize.width
-                    );
+                    this.dimension.width - this.einlagerungsmodulSize.width;
 
-                tmpRestLength = this.dimension.length - this.einlagerungsmodulSize.depth;
+                tmpRestLength =
+                    this.dimension.length -
+                    this.einlagerungsmodulSize.depth -
+                    this.bauteile.kistenaufzug.extended;
             }
 
             if (this.einlagerungsmodul.side == "long") {
                 tmpRestWidth =
                     this.dimension.width -
                     this.bauteile.regalbediengerät.diameter -
-                    this.einlagerungsmodulSize.depth;
+                    this.einlagerungsmodulSize.depth -
+                    this.bauteile.kistenaufzug.extended -
+                    this.bauteile.regalbediengerät.margin.y1 -
+                    this.bauteile.regalbediengerät.margin.y2;
 
                 tmpRestLength = this.dimension.length;
             }
@@ -243,14 +263,19 @@ export default {
             let nRows = 0;
 
             if (this.side1.restLength > 0) {
-                nRows = Math.ceil(this.side1.restLength / this.bauteile.lagerregal.width);
+                nRows = Math.ceil(
+                    this.side1.restLength / this.bauteile.lagerregal.width
+                );
             }
+
+            let isOverlapping = this.einlagerungsmodul.side == "short";
 
             // loop through all combinations
             this.side1.possibleVersions = this.getPossibleVersions(
                 nRows,
                 this.side1.restLength,
-                this.side1.restWidth
+                this.side1.restWidth,
+                isOverlapping
             );
         },
 
@@ -259,20 +284,32 @@ export default {
             var tmpRestLength = 0;
 
             if (this.einlagerungsmodul.side == "short") {
-                tmpRestWidth =
-                    this.side1.restWidth - this.side1.selectedVersion.shelf.fullSize;
+                var surplus = 0;
 
-                tmpRestLength = this.dimension.length - this.einlagerungsmodulSize.depth;
+                if (this.side1.selectedVersion != null) {
+                    surplus =
+                        this.side1.selectedVersion.shelf.fullSize -
+                        this.bauteile.kistenaufzug.width;
+                }
+
+                tmpRestWidth = this.side1.restWidth - Math.max(surplus, 0);
+
+                tmpRestLength =
+                    this.dimension.length -
+                    this.einlagerungsmodulSize.depth -
+                    this.bauteile.kistenaufzug.extended;
             }
 
             if (this.einlagerungsmodul.side == "long") {
+                // overlaps with einlagerungsmodul which is already respected on side1
                 let overlap =
                     this.side1.selectedVersion.shelf.fullSize -
                     this.einlagerungsmodulSize.depth;
 
                 tmpRestWidth = this.side1.restWidth - Math.max(0, overlap);
 
-                tmpRestLength = this.dimension.length - this.einlagerungsmodulSize.width;
+                tmpRestLength =
+                    this.dimension.length - this.einlagerungsmodulSize.width;
             }
 
             this.side2.restWidth = Math.max(0, tmpRestWidth);
@@ -282,28 +319,53 @@ export default {
             let nRows = 0;
 
             if (this.side2.restLength > 0) {
-                nRows = Math.ceil(this.side2.restLength / this.bauteile.lagerregal.width);
+                nRows = Math.ceil(
+                    this.side2.restLength / this.bauteile.lagerregal.width
+                );
             }
+
+            let isOverlapping =
+                this.einlagerungsmodul.type == "n20" &&
+                this.einlagerungsmodul.side == "short";
 
             // loop through all combinations
             this.side2.possibleVersions = this.getPossibleVersions(
                 nRows,
                 this.side2.restLength,
-                this.side2.restWidth
+                this.side2.restWidth,
+                isOverlapping
             );
         },
 
-        getPossibleVersions(nRows, restLength, restWidth) {
+        getPossibleVersions(nRows, restLength, restWidth, isOverlapping) {
             var possibleVersions = [];
+
+            // check if there is enough space
+            if (
+                this.dimension.width < this.einlagerungsmodulSize.width ||
+                this.dimension.length <
+                    this.einlagerungsmodulSize.depth +
+                        this.bauteile.kistenaufzug.extended
+            ) {
+                return possibleVersions;
+            }
+
+            // calculate overlapping width
+            let overlapping = isOverlapping
+                ? this.bauteile.kistenaufzug.width
+                : 0;
 
             for (let el of this.versions) {
                 let newRow = { name: el.type, data: [] };
 
                 for (let row = 1; row <= nRows; row++) {
-                    let fitWidth = restWidth > el.fullSize;
-                    let fitLength = restLength - row * this.bauteile.lagerregal.width > 0;
+                    let fitWidth = restWidth > el.fullSize - overlapping;
+                    let fitLength =
+                        restLength - row * this.bauteile.lagerregal.width > 0;
                     let val =
-                        fitWidth && fitLength && (row > 1 || el.movable == null) ? 1 : -1;
+                        fitWidth && fitLength && (row > 1 || el.movable == null)
+                            ? 1
+                            : 0;
 
                     newRow.data.push({ x: row.toString(), y: val });
                 }
@@ -314,9 +376,23 @@ export default {
         },
 
         dataPointClicked(event, chartContext, config) {
-            let dataPoint = this.side1.possibleVersions[config.seriesIndex].data[
-                config.dataPointIndex
-            ];
+            let side = null;
+            switch (chartContext.el.id) {
+                case "side-1":
+                    side = this.side1;
+                    break;
+                case "side-2":
+                    side = this.side2;
+                    break;
+                default:
+                    console.error("Unknown chart id");
+                    return;
+            }
+
+            let dataPoint =
+                side.possibleVersions[config.seriesIndex].data[
+                    config.dataPointIndex
+                ];
 
             if (dataPoint.y != 1) {
                 return; // no possible version
@@ -331,6 +407,9 @@ export default {
                     shelf: shelfType,
                 };
 
+                this.clearSelection(this.side1);
+                this.colorSelection(this.side1);
+
                 this.$emit("select-side-1", this.side1.selectedVersion);
 
                 this.calcPossibleVersionsSide2();
@@ -342,10 +421,35 @@ export default {
                     shelf: shelfType,
                 };
 
-                this.$emit("select-side-2", this.side2.selectedVersion);
+                this.clearSelection(this.side2);
+                this.colorSelection(this.side2);
 
-                this.calcPossibleVersionsSide1();
+                this.$emit("select-side-2", this.side2.selectedVersion);
             }
+        },
+
+        colorSelection(side) {
+            if (side.possibleVersions == null || side.selectedVersion == null)
+                return;
+
+            let type = side.selectedVersion.shelf.type;
+            let rows = side.selectedVersion.rows;
+
+            side.possibleVersions
+                .find((v) => v.name == type)
+                .data.find((d) => d.x == rows).y = 2;
+        },
+
+        clearSelection(side) {
+            if (side.possibleVersions == null) return;
+
+            side.possibleVersions.forEach((v) => {
+                v.data.forEach((d) => {
+                    if (d.y == 2) {
+                        d.y = 1;
+                    }
+                });
+            });
         },
 
         resetSide1() {
@@ -362,4 +466,4 @@ export default {
 };
 </script>
 
-<style scoped></style>
+<style></style>
