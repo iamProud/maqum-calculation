@@ -26,6 +26,8 @@
                 :einlagerungsmodul="einlagerungsmodul"
                 :einlagerungsmodulSize="einlagerungsmodulSize"
                 :bauteile="bauteile"
+                :shelfSide1="shelfSide1"
+                :shelfSide2="shelfSide2"
                 @select-side-1="setShelfSide1($event)"
                 @select-side-2="setShelfSide2($event)"
             ></Matrix>
@@ -46,6 +48,14 @@
             ></Preview>
         </div>
 
+        <Debugger
+            v-if="debug"
+            title="Debug"
+            :dimension="dimension"
+            :mashineDimensions="mashineDimensions"
+            :einlagerungsmodulSize="einlagerungsmodulSize"
+        ></Debugger>
+
         <Costs
             :fixShelfs="fixShelfs"
             :movableShelfs="movableShelfs"
@@ -57,26 +67,28 @@
 </template>
 
 <script>
-import Tile from "./components/tile.vue";
 import Preview from "./components/preview.vue";
 import Implementation from "./components/implementation.vue";
 import Matrix from "./components/matrix.vue";
 import bauteileJSON from "/src/assets/bauteile.json";
 import Costs from "./components/cost/costs.vue";
 import Dimensions from "./components/dimensions.vue";
+import Debugger from "./components/debugger.vue";
 
 export default {
     components: {
         Dimensions: Dimensions,
-        Tile: Tile,
         Preview: Preview,
         Matrix: Matrix,
         Implementation: Implementation,
         Costs: Costs,
+        Debugger: Debugger,
     },
 
     data() {
         return {
+            debug: true,
+
             bauteile: bauteileJSON,
 
             // Dimension in mm
@@ -125,7 +137,8 @@ export default {
 
                 // calculate dimesion based on unit
                 this.dimensionInput[key] =
-                    this.dimensionInput[key] * (this.unit[oldUnit] / this.unit[newUnit]);
+                    this.dimensionInput[key] *
+                    (this.unit[oldUnit] / this.unit[newUnit]);
             }
         },
 
@@ -224,18 +237,25 @@ export default {
                     side2Width = this.shelfSide2.shelf.fullSize;
                 }
 
-                fullWidth = Math.max(
-                    this.einlagerungsmodulSize.width,
-                    side1Width +
-                        side2Width +
-                        this.bauteile.regalbediengerät.diameter +
-                        this.bauteile.regalbediengerät.margin.y1 +
-                        this.bauteile.regalbediengerät.margin.y2
+                let kistenaufzug2width =
+                    this.einlagerungsmodul.type == "n20"
+                        ? this.bauteile.kistenaufzug.width
+                        : 0;
+                let side1maxWidth = Math.max(
+                    side1Width,
+                    this.bauteile.kistenaufzug.width
                 );
+                let side2maxWidth = Math.max(side2Width, kistenaufzug2width);
+
+                fullWidth =
+                    this.bauteile.picksystem.width +
+                    side1maxWidth +
+                    side2maxWidth;
             }
 
             if (this.einlagerungsmodul.side == "long") {
-                side1Length = this.shelfSide1.rows * this.bauteile.lagerregal.width;
+                side1Length =
+                    this.shelfSide1.rows * this.bauteile.lagerregal.width;
 
                 side2Length =
                     this.shelfSide2.rows * this.bauteile.lagerregal.width +
@@ -257,7 +277,7 @@ export default {
                 fullWidth =
                     side1Width +
                     regalbediengerätWidth +
-                    Math.max(this.einlagerungsmodulSize.depth, side2Width);
+                    this.einlagerungsmodulSize.depth;
             }
 
             return {
